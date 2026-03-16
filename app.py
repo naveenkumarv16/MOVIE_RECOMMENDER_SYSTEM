@@ -9,14 +9,29 @@ import os
 API_KEY = "53a6b0757f7196e8ced9a1d5f8764f67"
 
 # Load data
+# create folder if not exists
+os.makedirs("artifacts", exist_ok=True)
 
+# download similarity file if missing
+file_id = "1K6YWRJjjttcv-4tgahfFOv2aZ69mOukt"
+url = f"https://drive.google.com/uc?id={file_id}"
 
 if not os.path.exists("artifacts/similarity2.pkl"):
-    url = "https://drive.google.com/uc?export=download&id=1K6YWRJjjttcv-4tgahfFOv2aZ69mOukt"
     gdown.download(url, "artifacts/similarity2.pkl", quiet=False)
-new_data = pickle.load(open('artifacts/movie_list.pkl','rb'))
-##similarity = pickle.load(open('artifacts/similarity2.pkl','rb'))
+
+# load data
+new_data = pickle.load(open("artifacts/movie_list.pkl","rb"))
 similarity = pickle.load(open("artifacts/similarity2.pkl","rb"))
+
+similarity = pd.DataFrame(similarity)
+
+
+#if not os.path.exists("artifacts/similarity2.pkl"):
+    #url = "https://drive.google.com/uc?export=download&id=1K6YWRJjjttcv-4tgahfFOv2aZ69mOukt"
+    ##gdown.download(url, "artifacts/similarity2.pkl", quiet=False)
+##new_data = pickle.load(open('artifacts/movie_list.pkl','rb'))
+##similarity = pickle.load(open('artifacts/similarity2.pkl','rb'))
+##similarity = pickle.load(open("artifacts/similarity2.pkl","rb"))
 similarity = pd.DataFrame(similarity)
 
 st.title("🎬 Movie Recommender System")
