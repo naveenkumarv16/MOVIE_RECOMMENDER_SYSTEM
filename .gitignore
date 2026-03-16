@@ -1,4 +1,4 @@
 artifacts/similarity2.pkl 
+*.pkl 
 __pycache__/ 
 venv/ 
-*.pkl 
